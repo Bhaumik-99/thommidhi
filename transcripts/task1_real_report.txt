@@ -1,6 +1,6 @@
 REDACTED TASK 1 REPORT-DERIVED FIXTURE — NOT A RAW TOOL TRANSCRIPT
 
-Source: a prior Thommidhi integration report found in the Library. The report summarizes this sequence:
+Source: a prior Thommidhi integration report supplied as a summary artifact. The report summarizes this sequence:
 1. mcp__thommidhi__list_my_deals — existing deal and linked plan retrieved.
 2. mcp__thommidhi__update_deal — usage field reportedly corrected to brand_organic without intentionally changing the stage.
 3. mcp__thommidhi__list_my_deals — report says read-back confirmed the correction and linked plan.
