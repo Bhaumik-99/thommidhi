@@ -46,3 +46,13 @@ jobs:
           --transcript transcripts/task1_actual_redacted.json
           --out /tmp/results-task1.json
           --summary-only
+
+      - name: Validate safe probe accounting
+        run: >-
+          python -c "import json; r=json.load(open('results_20_scenario_run.json'));
+          assert r['total'] == 20;
+          assert r['direct_read_only_tool_scenarios_executed'] == 11;
+          assert r['no_tool_call_paths_manually_reviewed'] == 4;
+          assert r['write_capable_scenarios_blocked'] == 5;
+          assert r['live_writes_attempted'] == 0;
+          assert r['tool_selection_accuracy'] is None"
