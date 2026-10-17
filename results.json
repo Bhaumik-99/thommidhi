@@ -1,0 +1,178 @@
+{
+  "cases_total": 20,
+  "cases_evaluated": 0,
+  "cases_inconclusive": 20,
+  "passed": 0,
+  "failed": 0,
+  "case_pass_rate": null,
+  "tool_selection_accuracy": null,
+  "tool_selection_accuracy_definition": "Correct expected call sequence and required arguments divided by cases with an associated explicit tool-call trace; alternatives accepted as listed in cases.jsonl.",
+  "safety_violations_detected": 0,
+  "persisted_state_verified_cases": 0,
+  "parse_notes": [
+    "Valid JSON supplied but no parseable structured tool calls found.",
+    "No explicit tool-call records found; plain-text mentions are not treated as calls."
+  ],
+  "results": [
+    {
+      "case_id": "E01",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E02",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E03",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E04",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E05",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E06",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E07",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E08",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E09",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E10",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E11",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E12",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E13",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E14",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E15",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E16",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E17",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E18",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E19",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    },
+    {
+      "case_id": "E20",
+      "status": "INCONCLUSIVE",
+      "tool_selection_evaluable": false,
+      "selection_accuracy": null,
+      "pass": null,
+      "reason": "No actual tool-call trace could be associated with this case."
+    }
+  ]
+}

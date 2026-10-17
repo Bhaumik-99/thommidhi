@@ -1,0 +1,128 @@
+{
+  "source": "Exact exposed Oli/Thommidhi tool names and schema fields inspected in this session",
+  "proposed_or_unexposed_tools_excluded": ["request_deal_agreement"],
+  "tools": [
+    {
+      "name": "mcp__thommidhi__get_my_creator_profile",
+      "description": "The creator's profile as they typed it in Thommidhi: kind of channel, languages, topics and who their videos are for.",
+      "inputs": {}
+    },
+    {
+      "name": "mcp__thommidhi__get_my_terms",
+      "description": "The creator's own terms for brand work: style and what fits, categories they welcome and products they won't promote, what they offer, reuse, exclusivity, rounds of changes, notice needed and when they're free. Their minimum fee is included only if they chose to share it.",
+      "inputs": {}
+    },
+    {
+      "name": "mcp__thommidhi__check_offer",
+      "description": "Checks an offer against the creator's saved terms with Thommidhi's fixed rules (no AI). Returns each point as conflict, fits, ask or unknown and questions ready to send to the brand. Reports points, never a verdict to accept or decline. Fields the offer doesn't state can be left out.",
+      "inputs": {
+        "brand": "string optional",
+        "product": "string required",
+        "category": ["food", "home", "beauty", "fashion", "tech", "apps", "education", "finance", "travel", "auto", "health", "family", "gaming", "other"],
+        "fee": "number optional; offered fee in rupees",
+        "deliverables": ["integration", "dedicated", "short", "community", "reel", "story"],
+        "usage": ["organic", "brand_organic", "paid_30", "paid_90", "paid_any"],
+        "exclusivityDays": "integer optional, 0-365",
+        "revisions": "integer optional, 0-10",
+        "liveBy": "YYYY-MM-DD string optional",
+        "notes": "string optional"
+      }
+    },
+    {
+      "name": "mcp__thommidhi__list_my_deals",
+      "description": "Offers and brands on the creator's deal desk (stage, offer details, the concept they wrote) and plans they saved, newest first.",
+      "inputs": {"include_closed": "boolean optional; also returns declined, closed and completed deals"}
+    },
+    {
+      "name": "mcp__thommidhi__list_paid_briefs",
+      "description": "Live paid briefs on Thommidhi that fit the creator's languages: what to make, fee per creator, places left, rights, deadline and how to apply. Applying happens in Thommidhi.",
+      "inputs": {}
+    },
+    {
+      "name": "mcp__thommidhi__save_deal",
+      "description": "Puts an offer received by email, DM or WhatsApp on the creator's deal desk with the check result, and optionally a concept. Writes only to the creator's own deal desk.",
+      "inputs": {
+        "brand": "string required",
+        "product": "string required",
+        "category": ["food", "home", "beauty", "fashion", "tech", "apps", "education", "finance", "travel", "auto", "health", "family", "gaming", "other"],
+        "fee": "number optional",
+        "deliverables": ["integration", "dedicated", "short", "community", "reel", "story"],
+        "usage": ["organic", "brand_organic", "paid_30", "paid_90", "paid_any"],
+        "exclusivityDays": "integer optional, 0-365",
+        "revisions": "integer optional, 0-10",
+        "liveBy": "YYYY-MM-DD string optional",
+        "notes": "string optional",
+        "concept": {"carrier": "string optional", "moment": "string optional", "stays": "string optional"}
+      }
+    },
+    {
+      "name": "mcp__thommidhi__propose_terms_update",
+      "description": "Turns terms the creator stated in this conversation into a preview for them to approve. Nothing changes yet; preview is held for 30 minutes. Takes only creator-stated values quoted in creator_said and never estimates fee, audience or preference.",
+      "inputs": {
+        "creator_said": "string required; quote the creator's own words",
+        "changes": {
+          "deliverables": ["integration", "dedicated", "short", "community", "reel", "story"],
+          "rateFloor": "number optional; only if creator said it",
+          "usage": ["organic", "brand_organic", "paid_30", "paid_90", "paid_any"],
+          "exclusivityDays": "integer optional, 0-365",
+          "revisions": "integer optional, 0-10",
+          "leadDays": "integer optional, 0-120",
+          "availableFrom": "YYYY-MM or empty string optional",
+          "categories": ["food", "home", "beauty", "fashion", "tech", "apps", "education", "finance", "travel", "auto", "health", "family", "gaming", "other"],
+          "excluded": "string array optional",
+          "style": "string optional",
+          "fits": "string optional"
+        }
+      }
+    },
+    {
+      "name": "mcp__thommidhi__confirm_terms_update",
+      "description": "Replaces the creator's saved terms with a previewed version they approved; nothing else changes and nothing is deleted. Preview expires after 30 minutes or if terms changed meanwhile.",
+      "inputs": {"change_id": "string required"}
+    },
+    {
+      "name": "mcp__thommidhi__update_deal",
+      "description": "Changes a deal's stage or details on the creator's desk. open = considering; talks = creator said interested, nothing agreed; agreed = both sides confirmed terms (requires agreement_summary and brand_confirmed true), and is refused without written brand confirmation; declined requires a reason. Records details the brand clarified; unknowns stay unknown.",
+      "inputs": {
+        "deal_id": "string required",
+        "stage": ["open", "talks", "agreed", "completed", "declined", "closed"],
+        "reason": "string optional; for declined or closed",
+        "clarified": {
+          "brand": "string optional",
+          "product": "string optional",
+          "category": ["food", "home", "beauty", "fashion", "tech", "apps", "education", "finance", "travel", "auto", "health", "family", "gaming", "other"],
+          "fee": "number optional",
+          "deliverables": ["integration", "dedicated", "short", "community", "reel", "story"],
+          "usage": ["organic", "brand_organic", "paid_30", "paid_90", "paid_any"],
+          "exclusivityDays": "integer optional, 0-365",
+          "revisions": "integer optional, 0-10",
+          "liveBy": "YYYY-MM-DD string optional",
+          "notes": "string optional"
+        },
+        "agreement_summary": "string optional; for agreed stage",
+        "brand_confirmed": "boolean optional; for agreed stage"
+      }
+    },
+    {
+      "name": "mcp__thommidhi__save_work_plan",
+      "description": "Saves a plan the creator agreed in this conversation: title, concept, format, language, shoot and due dates and tasks, optionally linked to a deal. It appears in the creator's Thommidhi Lab.",
+      "inputs": {
+        "title": "string required",
+        "concept": "string optional",
+        "format": "string optional",
+        "language": "string optional",
+        "shoot_on": "YYYY-MM-DD optional",
+        "due_on": "YYYY-MM-DD optional",
+        "tasks": "string array optional, max 12",
+        "deal_id": "string optional; existing ID returned by list/save tool"
+      }
+    }
+  ],
+  "design_notes": [
+    "This catalog records the current exposed interface, not proposed replacement tools.",
+    "The six-item deliverable enum does not represent LinkedIn posts or co-authored launch posts as structured values.",
+    "The single usage enum does not independently represent simultaneous organic reposting, paid usage, platform, and duration dimensions.",
+    "No idempotency key is exposed in save_deal or save_work_plan inputs.",
+    "No tool-registration, model-replay, or state-snapshot operation was exposed in the tool definitions inspected."
+  ]
+}

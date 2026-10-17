@@ -1,0 +1,10 @@
+REDACTED TASK 1 REPORT-DERIVED FIXTURE — NOT A RAW TOOL TRANSCRIPT
+
+Source: a prior Thommidhi integration report found in the Library. The report summarizes this sequence:
+1. mcp__thommidhi__list_my_deals — existing deal and linked plan retrieved.
+2. mcp__thommidhi__update_deal — usage field reportedly corrected to brand_organic without intentionally changing the stage.
+3. mcp__thommidhi__list_my_deals — report says read-back confirmed the correction and linked plan.
+
+The raw transcript, exact argument objects, and raw tool outputs were not found in the accessible records. The report notes that some deliverables remained in notes because the exposed structured schema lacked types, and that contract signature was not independently verified.
+
+Evidence status: raw argument payloads unavailable; state evidence is report-described rather than independently machine-verifiable; exact per-call latency and timestamps unavailable. This fixture must not be interpreted as actual tool-call events. No live record was changed to make this fixture.
