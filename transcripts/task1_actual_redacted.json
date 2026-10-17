@@ -1,0 +1,87 @@
+{
+  "provenance": "Redacted fixture derived from the user's recorded Task 1 tool-message log in ChatGPT; summaries below preserve only visible evidence needed for evaluation.",
+  "redacted": true,
+  "redacted_fields": [
+    "brand name",
+    "product description",
+    "deal identifier",
+    "fee",
+    "detailed commercial terms",
+    "plan identifier"
+  ],
+  "output_limitations": "The source log shows truncated returned note strings. This fixture does not reconstruct missing text and summarizes the visible output fields only.",
+  "messages": [
+    {
+      "case_id": "T1",
+      "tool_calls": [
+        {
+          "name": "mcp__thommidhi__list_my_deals",
+          "arguments": {
+            "include_closed": true
+          }
+        }
+      ],
+      "recorded_output_summary": {
+        "existing_deal_found": true,
+        "linked_plan_found": true,
+        "stage_before": "agreed",
+        "prior_usage_description": "paid-usage setting",
+        "structured_deliverables_before": [
+          "whole video only"
+        ],
+        "returned_notes_truncated": true
+      }
+    },
+    {
+      "case_id": "T1",
+      "tool_calls": [
+        {
+          "name": "mcp__thommidhi__update_deal",
+          "arguments": {
+            "deal_id": "[REDACTED_DEAL_ID]",
+            "clarified": {
+              "brand": "[REDACTED_BRAND]",
+              "product": "[REDACTED_PRODUCT]",
+              "category": "tech",
+              "usage": "brand_organic",
+              "notes": "[REDACTED COMMERCIAL TERMS]. The recorded note states that the structured deliverables field cannot represent the LinkedIn updates and co-authored launch post, so the broader scope was recorded in notes. The SOW signature was not independently verified.",
+              "fee": 170000
+            }
+          }
+        }
+      ],
+      "recorded_output_summary": {
+        "changed": [
+          "details"
+        ],
+        "stage_after_update": "agreed",
+        "returned_note_excerpt_truncated": true
+      }
+    },
+    {
+      "case_id": "T1",
+      "tool_calls": [
+        {
+          "name": "mcp__thommidhi__list_my_deals",
+          "arguments": {
+            "include_closed": true
+          }
+        }
+      ],
+      "recorded_output_summary": {
+        "usage_readback_description": "The brand may repost it",
+        "stage_after_readback": "agreed",
+        "structured_deliverables_after": [
+          "whole video only"
+        ],
+        "broader_deliverables_still_in_notes": true,
+        "linked_plan_found": true,
+        "returned_notes_truncated": true
+      },
+      "state_evidence": {
+        "persisted_state_verified": true,
+        "evidence_detail": "The subsequent retrieval showed the usage description changed from the prior paid-usage setting to a brand-repost description; the agreed stage remained unchanged."
+      }
+    }
+  ]
+}

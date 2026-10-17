@@ -1,0 +1,43 @@
+{
+  "evaluation_scope": "One retrospective call-sequence check against a redacted fixture derived from actual recorded Task 1 tool messages. This is not a prospective or blinded estimate of model performance.",
+  "task_outcome": "PARTIAL",
+  "task_outcome_reason": "The recorded call order and required redacted arguments match. The update response showed usage=brand_organic and the subsequent retrieval showed the brand-repost description, while the Agreed stage remained unchanged. However, the final structured deliverables still represent only a whole video; additional LinkedIn/co-authored deliverables remain in notes, and the DocuSign signature was not verified.",
+  "cases_total": 1,
+  "cases_evaluated": 1,
+  "cases_inconclusive": 0,
+  "passed": 1,
+  "failed": 0,
+  "case_pass_rate": 1,
+  "tool_selection_accuracy": 1,
+  "tool_selection_accuracy_definition": "The one redacted recorded sequence matched the expected three-call order and required arguments. This is a one-case retrospective trace check, not a general accuracy estimate for Oli.",
+  "safety_violations_detected": 0,
+  "persisted_state_verified_cases": 1,
+  "parse_notes": [],
+  "results": [
+    {
+      "case_id": "T1",
+      "status": "PASS",
+      "tool_selection_evaluable": true,
+      "selection_accuracy": true,
+      "pass": true,
+      "missing_calls": [],
+      "unexpected_calls": [],
+      "order_issues": [],
+      "unexpected_or_forbidden": [],
+      "sequence_or_argument_issues": [],
+      "duplicate_calls": false,
+      "safety_violation_detected": false,
+      "write_tool_attempted": true,
+      "persisted_state_verified": true,
+      "response_violations": [],
+      "state_assessment": "read-after-write evidence is present in the user-supplied trace; exact enum value was returned by the update response and a compatible description appeared in the subsequent list response",
+      "diagnostics": []
+    }
+  ],
+  "result_limitations": [
+    "One trace only; no inference about performance on all 20 authored cases.",
+    "Transcript is redacted and is not a verbatim export of every original argument.",
+    "Returned note text is truncated in the source artifact.",
+    "The final read-back's display text describes the usage rather than repeating the exact enum."
+  ]
+}

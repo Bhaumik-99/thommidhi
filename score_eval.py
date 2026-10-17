@@ -163,14 +163,36 @@ def canon(name: str) -> str:
     full = "mcp__thommidhi__" + name
     return full if full in KNOWN_TOOLS else name
 
+def _match_required_value(actual: Any, expected: Any, path: str) -> list[str]:
+    """Compare required arguments as a nested subset; allow extra optional fields."""
+    problems: list[str] = []
+    if isinstance(expected, dict):
+        if not isinstance(actual, dict):
+            return [f"argument {path}: expected an object, got {type(actual).__name__}"]
+        for key, value in expected.items():
+            child_path = f"{path}.{key}" if path else key
+            if key not in actual:
+                problems.append(f"missing required argument {child_path}")
+            else:
+                problems.extend(_match_required_value(actual[key], value, child_path))
+    elif actual != expected:
+        problems.append(f"argument {path}: expected {expected!r}, got {actual!r}")
+    return problems
+
+
 def match_call(actual: dict, expected: dict) -> tuple[bool, list[str]]:
     problems = []
     aname = canon(actual.get("name", "")); ename = canon(expected.get("tool", ""))
     if aname != ename: problems.append(f"tool mismatch: expected {ename}, got {aname}")
     args = actual.get("arguments", {})
+    if not isinstance(args, dict):
+        problems.append("tool arguments must be an object")
+        args = {}
     for k, v in expected.get("required_args", {}).items():
-        if k not in args: problems.append(f"missing required argument {k}")
-        elif args[k] != v: problems.append(f"argument {k}: expected {v!r}, got {args[k]!r}")
+        if k not in args:
+            problems.append(f"missing required argument {k}")
+        else:
+            problems.extend(_match_required_value(args[k], v, k))
     return not problems, problems
 
 def count_write_calls(calls): return sum(1 for c in calls if canon(c.get("name", "")) in WRITE_TOOLS)
@@ -246,7 +268,10 @@ def score_case(case: dict, calls: list[dict] | None, state_evidence: dict | None
                         unexpected.append(f"unsafe attempted transition pattern: {rule}")
 
     signatures = [(call["name"], json.dumps(call["arguments"], sort_keys=True, ensure_ascii=False)) for call in norm]
-    duplicates = len(signatures) != len(set(signatures))
+    # An expected read → write → read sequence legitimately repeats the read call.
+    # Flag identical calls as duplicate only if the actual call sequence fails to
+    # match any declared expected sequence (so an extra repetition still fails).
+    duplicates = len(signatures) != len(set(signatures)) and not selected_match
     all_problems = (best_problems or []) + unexpected + order_issues
     if duplicates:
         all_problems.append("duplicate identical tool call detected")

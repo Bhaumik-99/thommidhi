@@ -38,3 +38,11 @@ jobs:
           --transcript transcripts/task1_report_fixture.json
           --out /tmp/results.json
           --summary-only
+
+      - name: Verify recorded Task 1 trace fixture
+        run: >-
+          python score_eval.py
+          --cases transcripts/task1_case.jsonl
+          --transcript transcripts/task1_actual_redacted.json
+          --out /tmp/results-task1.json
+          --summary-only

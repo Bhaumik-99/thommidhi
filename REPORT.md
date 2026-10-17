@@ -4,7 +4,7 @@
 
 A 20-case synthetic evaluation suite and a standard-library Python scorer have been created using the actual currently exposed Thommidhi tool names and their exposed descriptions/schemas. The scoring code and unit tests are runnable. The full 20 cases have **not** been executed against Oli because the available integration exposes individual tools but no model-replay/evaluation harness.
 
-A prior Task 1 evaluation artifact was available as a summary of a real workflow, not the raw call transcript. It reports the sequence `mcp__thommidhi__list_my_deals` → `mcp__thommidhi__update_deal` → `mcp__thommidhi__list_my_deals`, with the usage category corrected to `brand_organic` and a read-back described. The artifact does not provide raw arguments or a machine-verifiable state snapshot. As a result, real Task 1 call-selection accuracy is **inconclusive**; it is not recorded as a pass.
+After the initial summary-only review, the user supplied the recorded Task 1 tool-message excerpt with the three actual calls, arguments, and visible outputs. A redacted fixture and dedicated case now preserve that sequence. The one-case retrospective trace check matches the recorded sequence and selected required arguments; it is not a prospective or blinded benchmark. The returned note strings remain visibly truncated, and the trace does not verify the DocuSign signature.
 
 ## Measured results
 
@@ -12,8 +12,8 @@ A prior Task 1 evaluation artifact was available as a summary of a real workflow
 - Full synthetic cases executed against Oli: **0**.
 - Full-suite pass rate: **not measured**.
 - Full-suite tool-selection accuracy: **not measured**.
-- Real Task 1 transcript evaluation: **inconclusive**, because only a report-derived summary was available.
-- Persisted-state evidence independently verified for the recovered Task 1 artifact: **no**.
+- Recorded Task 1 sequence check: **1/1 retrospective redacted case passed**; overall task disposition remains **partial** because structured deliverables remain incomplete and the DocuSign signature was not verified.
+- Task 1 read-after-write evidence: **observed** in the user-supplied trace; the update response showed `usage: brand_organic`, and the subsequent list response described the brand-repost setting. The final list did not repeat the exact enum value.
 - Unit tests: **13 passed locally** (CI is configured for Python 3.10–3.13).
 - Synthetic scorer smoke test: **2/2 passed** (`results_synthetic_smoke.json`); this validates basic parser/scorer operation only and is not a performance estimate for Oli.
 - Live deal/terms mutations performed for this eval: **none**.
@@ -59,11 +59,11 @@ A model response or a report summarizing tool calls is not equivalent to actual 
 
 ## Real Task 1 result
 
-**Status: INCONCLUSIVE.** The located artifact `Thommidhi_AI_Integration_Evaluation.pdf` summarizes a successful-looking three-call sequence and a read-back, but does not give exact raw arguments. The report itself says the full delivery scope remained only partially represented structurally and that the contract signature was not independently verified. This eval does not claim that Task 1 passed exact call-level scoring.
+**Status: INCONCLUSIVE.** The user-supplied trace contains the three recorded tool calls with inputs and visible outputs. The redacted case `transcripts/task1_case.jsonl` checks the call order and selected required arguments; `results_task1_redacted.json` records a 1/1 sequence-check pass for that single retrospective case. The overall task remains partial: the structured deliverables field still contains only a whole-video entry, the other deliverables are described in notes, and the DocuSign signature was not independently verified. Returned note text is truncated in the supplied excerpt.
 
 ## Limitations
 
-1. No raw Task 1 transcript with exact tool-call arguments was found in the available records.
+1. The recorded Task 1 tool-message excerpt was supplied after the initial review, but the committed public fixture is redacted and the visible return-note fields remain truncated.
 2. No live model-replay harness or sandbox is exposed by the currently available integration tools.
 3. No independent persisted-state snapshot was supplied for this project; the existing report summarizes read-back but the underlying payload is not present here.
 4. Synthetic case expectations validate the scoring framework and provide a reusable test set, but cannot substitute for executing those prompts through the actual Oli model and recording its tools.
@@ -71,6 +71,6 @@ A model response or a report summarizing tool calls is not equivalent to actual 
 
 ## Recommended next steps
 
-1. Export a raw Task 1 trace with call names, exact argument objects, tool outputs, case ID, and timestamps; rescore it through `score_eval.py`.
+1. If available, preserve an unredacted private copy of the Task 1 trace with exact arguments and full tool outputs; keep the public fixture redacted and use the scorer's one-case result only as a retrospective check.
 2. Replay E01–E20 in a dedicated sandbox/test account and attach an independently captured before/after state snapshot for every mutation-focused case.
 3. Add idempotency and duplicate detection for `save_deal` and `save_work_plan`, plus a separate agreement-transition endpoint with server-verified evidence.
