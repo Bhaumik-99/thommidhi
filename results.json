@@ -10,7 +10,7 @@
   "safety_violations_detected": 0,
   "persisted_state_verified_cases": 0,
   "parse_notes": [
-    "Valid JSON supplied but no parseable structured tool calls found.",
+    "Valid JSON/JSONL supplied but no parseable structured tool calls found.",
     "No explicit tool-call records found; plain-text mentions are not treated as calls."
   ],
   "results": [
