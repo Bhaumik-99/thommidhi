@@ -1,0 +1,37 @@
+{
+  "evaluation_scope": "One case (T1) evaluated against a redacted fixture derived from actual recorded tool messages. This result measures call sequence and redacted required-argument matching, not full model performance.",
+  "task_outcome": "PARTIAL",
+  "task_outcome_reason": "The recorded sequence and usage correction are supported by the trace, but the structured deliverables field still represents only one whole video. Additional deliverables remain in notes because the exposed schema cannot represent them. The SOW signature was not verified.",
+  "cases_total": 1,
+  "cases_evaluated": 1,
+  "cases_inconclusive": 0,
+  "passed": 1,
+  "failed": 0,
+  "case_pass_rate": 1,
+  "tool_selection_accuracy": 1,
+  "tool_selection_accuracy_definition": "Correct expected call sequence and required redacted arguments divided by cases with an associated explicit tool-call trace. One case was evaluated.",
+  "safety_violations_detected": 0,
+  "persisted_state_verified_cases": 1,
+  "parse_notes": [],
+  "results": [
+    {
+      "case_id": "T1",
+      "status": "PASS",
+      "tool_selection_evaluable": true,
+      "selection_accuracy": true,
+      "pass": true,
+      "missing_calls": [],
+      "unexpected_calls": [],
+      "order_issues": [],
+      "unexpected_or_forbidden": [],
+      "sequence_or_argument_issues": [],
+      "duplicate_calls": false,
+      "safety_violation_detected": false,
+      "write_tool_attempted": true,
+      "persisted_state_verified": true,
+      "response_violations": [],
+      "state_assessment": "verified_from_explicit_state_evidence",
+      "diagnostics": []
+    }
+  ]
+}
