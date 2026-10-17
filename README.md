@@ -118,6 +118,10 @@ The scorer validates required arguments rather than rejecting every additional o
 | `transcripts/` | Clearly labeled synthetic and report-derived fixtures |
 | `results.json` | Current report-derived evaluation result |
 | `results_synthetic_smoke.json` | Synthetic parser/scorer smoke-test output |
+| `transcripts/task1_case.jsonl` | One retrospective case for the recorded Task 1 flow |
+| `transcripts/task1_actual_redacted.json` | Redacted trace fixture derived from recorded tool messages |
+| `results_task1_redacted.json` | One-case Task 1 trace-check output |
+| `TASK1_FINDINGS.md` | Findings and limitations from the recorded Task 1 trace |
 | `REPORT.md` | Findings, limitations, and integration recommendations |
 | `CONTRIBUTING.md` | Scenario, testing, privacy, and evidence standards |
 
@@ -128,10 +132,10 @@ The scorer validates required arguments rather than rejecting every additional o
 | Scenarios authored | 20 |
 | Unit tests passing locally | 13 |
 | Full suite replayed against Oli | No |
-| Real Task 1 tool-selection accuracy | Unmeasured / inconclusive |
-| Independent persisted-state evidence in the recovered artifact | Unavailable |
+| Recorded Task 1 sequence check | 1/1 redacted retrospective case matched; not a general performance estimate |
+| Read-after-write evidence in the supplied Task 1 trace | Observed; final list used a display description, not the exact enum |
 | Live Thommidhi mutations performed to create fixtures | None |
 
-The report-derived Task 1 artifact summarizes a `list_my_deals` → `update_deal` → `list_my_deals` flow and says a usage field was corrected to `brand_organic`. It contains neither raw arguments nor raw tool outputs, so this suite does not count that workflow as a pass. The two synthetic smoke-test examples pass, but that validates only those scorer examples.
+The prior report-derived fixture remains inconclusive because it is only a summary. Separately, `transcripts/task1_actual_redacted.json` captures a redacted version of the actual three-call Task 1 tool-message sequence supplied later in this conversation. Its one-case result matches the expected call order, and the read-back supports the usage correction. This is retrospective evidence for one workflow—not a general benchmark result. See `TASK1_FINDINGS.md`; the structured deliverables remain incomplete and the SOW signature was not verified.
 
 This project scores **recorded behavior**. It does not include a live model-replay harness, call Thommidhi services, guarantee backend authorization, or prove that unlogged mutations did not occur. Read [REPORT.md](REPORT.md) before interpreting the metrics.
