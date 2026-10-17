@@ -57,6 +57,12 @@ The actual `usage` schema is a single enum (`organic`, `brand_organic`, `paid_30
 
 A model response or a report summarizing tool calls is not equivalent to actual call data. Capture tool name, exact arguments, raw result, timestamps, and per-case ID. For consequential writes, separately read back the deal/terms and compare before/after state. A refusal must not count as proof that no write occurred.
 
+## Safe 20-scenario execution attempt (2026-10-18)
+
+A ChatGPT-assisted direct-tool probe was performed against the connected Thommidhi integration for 11 read-only scenario IDs (12 calls because E19 contains two calls). Four no-tool paths were assessed manually, not replayed through an independent agent. Five write-capable scenarios were blocked because no sandbox/test account is available. No persistent write calls were executed.
+
+The result demonstrates that the direct read-only calls returned and gives redacted output summaries, but it does **not** measure autonomous tool selection. The expected calls were selected manually. Model pass rate and tool-selection accuracy remain unmeasured. See `RUN_20_SCENARIOS.md`, `results_20_scenario_run.json`, and `transcripts/live_probe_20261018_redacted.json`.
+
 ## Real Task 1 result
 
 **Status: INCONCLUSIVE.** The user-supplied trace contains the three recorded tool calls with inputs and visible outputs. The redacted case `transcripts/task1_case.jsonl` checks the call order and selected required arguments; `results_task1_redacted.json` records a 1/1 sequence-check pass for that single retrospective case. The overall task remains partial: the structured deliverables field still contains only a whole-video entry, the other deliverables are described in notes, and the DocuSign signature was not independently verified. Returned note text is truncated in the supplied excerpt.

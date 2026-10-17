@@ -133,6 +133,16 @@ The scorer validates required arguments rather than rejecting every additional o
 | `REPORT.md` | Findings, limitations, and integration recommendations |
 | `CONTRIBUTING.md` | Scenario, testing, privacy, and evidence standards |
 
+## Safe 20-scenario execution attempt (2026-10-18)
+
+A redacted direct-tool probe was completed for 11 read-only scenario IDs (12 calls, because E19 contains two calls). Four no-tool paths were assessed manually in this conversation, and five write-capable scenarios were blocked because this integration targets the live creator desk and no sandbox was available.
+
+**This is not an autonomous Oli model replay.** Tool routes were manually selected from the cases, so model tool-selection accuracy remains unmeasured. The 15 non-write scenarios were not 15 independent agent runs. No persistent writes were attempted.
+
+- [Run summary](RUN_20_SCENARIOS.md)
+- [Machine-readable status](results_20_scenario_run.json)
+- [Redacted direct-call trace](transcripts/live_probe_20261018_redacted.json)
+
 ## Current status
 
 | Measure | Result |
