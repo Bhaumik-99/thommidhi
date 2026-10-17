@@ -1,6 +1,10 @@
 # Thommidhi / Oli — Small Tool-Selection Eval
 
-This project defines a 20-case, reproducible evaluation suite for whether Oli chooses the appropriate exposed Thommidhi tools, uses supplied arguments correctly, avoids unnecessary/persistent calls, and respects approval and untrusted-content boundaries.
+[![CI](https://github.com/Bhaumik-99/thommidhi/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Bhaumik-99/thommidhi/actions/workflows/ci.yml)
+
+A reproducible, dependency-free evaluation suite for whether Oli chooses appropriate Thommidhi tools, supplies required arguments, avoids unnecessary writes, and respects approval and untrusted-content boundaries.
+
+> **Evidence status:** 20 scenarios are authored; the suite has not been replayed against Oli. The available Task 1 artifact is a summary rather than a raw trace, so live tool-selection accuracy is unmeasured. Synthetic smoke-test results validate the scorer only, not Oli performance.
 
 ## Actual tool surface used
 
@@ -35,7 +39,7 @@ The new `request_deal_agreement` tool discussed in earlier design work is **not 
 
 ## Setup
 
-Python 3.10+; standard library only.
+Python 3.10+; standard library only. GitHub Actions runs the unit tests on Python 3.10–3.13.
 
 ```bash
 python -m unittest discover -s tests -v
