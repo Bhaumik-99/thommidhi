@@ -125,7 +125,7 @@ The scorer validates required arguments rather than rejecting every additional o
 | Measure | Result |
 |---|---|
 | Scenarios authored | 20 |
-| Unit tests passing locally | 12 |
+| Unit tests passing locally | 13 |
 | Full suite replayed against Oli | No |
 | Real Task 1 tool-selection accuracy | Unmeasured / inconclusive |
 | Independent persisted-state evidence in the recovered artifact | Unavailable |
