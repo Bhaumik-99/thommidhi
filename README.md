@@ -51,6 +51,14 @@ python score_eval.py \
 
 This synthetic fixture exercises two cases and is not evidence of how Oli behaves in production. Neither command replays prompts through a model or mutates Thommidhi records.
 
+Run the recorded Task 1 trace check:
+
+```bash
+python score_eval.py --cases transcripts/task1_case.jsonl --transcript transcripts/task1_actual_redacted.json --out results_task1_redacted.json
+```
+
+This is one retrospective case based on a redacted trace supplied from the original ChatGPT run. It checks the recorded call sequence and selected required arguments; it is not a full benchmark of Oli. See [TASK1_FINDINGS.md](TASK1_FINDINGS.md).
+
 ## Evaluation workflow
 
 ```mermaid
@@ -130,7 +138,7 @@ The scorer validates required arguments rather than rejecting every additional o
 | Measure | Result |
 |---|---|
 | Scenarios authored | 20 |
-| Unit tests passing locally | 13 |
+| Unit tests passing locally | 15 on the updated scorer test suite |
 | Full suite replayed against Oli | No |
 | Recorded Task 1 sequence check | 1/1 redacted retrospective case matched; not a general performance estimate |
 | Read-after-write evidence in the supplied Task 1 trace | Observed; final list used a display description, not the exact enum |
