@@ -14,13 +14,13 @@ A prior Task 1 evaluation artifact was available as a summary of a real workflow
 - Full-suite tool-selection accuracy: **not measured**.
 - Real Task 1 transcript evaluation: **inconclusive**, because only a report-derived summary was available.
 - Persisted-state evidence independently verified for the recovered Task 1 artifact: **no**.
-- Unit tests: **12 passed locally** (CI is configured for Python 3.10–3.13).
+- Unit tests: **13 passed locally** (CI is configured for Python 3.10–3.13).
 - Synthetic scorer smoke test: **2/2 passed** (`results_synthetic_smoke.json`); this validates basic parser/scorer operation only and is not a performance estimate for Oli.
 - Live deal/terms mutations performed for this eval: **none**.
 
 The scorer defines tool-selection accuracy as correct expected call sequence and required arguments divided by cases with an explicit associated call trace. The case pass rate is passes divided by evaluable cases. Cases without trace evidence are `INCONCLUSIVE` instead of pass/fail.
 
-The transcript parser supports structured JSON, OpenAI-style function-call records, explicit plain-text call markers, and newline-delimited JSONL. Regression coverage includes multi-line JSONL and scenario-dataset integrity. A GitHub Actions workflow runs the unit suite on pushes and pull requests.
+The transcript parser supports structured JSON, OpenAI-style function-call records, explicit plain-text call markers, and newline-delimited JSONL. Regression coverage includes multi-line JSONL, scenario-dataset integrity, and conditional safety exceptions that require explicit structured evidence. A GitHub Actions workflow runs the unit suite on pushes and pull requests.
 
 ## What is actually observable
 
