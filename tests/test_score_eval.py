@@ -96,7 +96,7 @@ class ScoreEvalTests(unittest.TestCase):
     def test_multiline_jsonl_transcript_parses_by_case(self):
         records = [
             {"case_id": "E01", "tool_calls": [{"name": "mcp__thommidhi__check_offer", "arguments": {"product": "earbuds"}}]},
-            {"case_id": "E03", "tool_calls": [],
+            {"case_id": "E03", "tool_calls": []},
         ]
         with tempfile.TemporaryDirectory() as d:
             p = Path(d) / "trace.jsonl"
