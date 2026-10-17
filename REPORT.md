@@ -4,7 +4,7 @@
 
 A 20-case synthetic evaluation suite and a standard-library Python scorer have been created using the actual currently exposed Thommidhi tool names and their exposed descriptions/schemas. The scoring code and unit tests are runnable. The full 20 cases have **not** been executed against Oli because the available integration exposes individual tools but no model-replay/evaluation harness.
 
-A previous Task 1 report was found in the user's Library. It is a summary of a real workflow, not the raw call transcript. It reports the sequence `mcp__thommidhi__list_my_deals` → `mcp__thommidhi__update_deal` → `mcp__thommidhi__list_my_deals`, with the usage category corrected to `brand_organic` and a read-back described. The artifact does not provide raw arguments or a machine-verifiable state snapshot. As a result, real Task 1 call-selection accuracy is **inconclusive**; it is not recorded as a pass.
+A prior Task 1 evaluation artifact was available as a summary of a real workflow, not the raw call transcript. It reports the sequence `mcp__thommidhi__list_my_deals` → `mcp__thommidhi__update_deal` → `mcp__thommidhi__list_my_deals`, with the usage category corrected to `brand_organic` and a read-back described. The artifact does not provide raw arguments or a machine-verifiable state snapshot. As a result, real Task 1 call-selection accuracy is **inconclusive**; it is not recorded as a pass.
 
 ## Measured results
 
@@ -14,11 +14,13 @@ A previous Task 1 report was found in the user's Library. It is a summary of a r
 - Full-suite tool-selection accuracy: **not measured**.
 - Real Task 1 transcript evaluation: **inconclusive**, because only a report-derived summary was available.
 - Persisted-state evidence independently verified for the recovered Task 1 artifact: **no**.
-- Unit tests: **10 passed**.
+- Unit tests: **13 passed locally** (CI is configured for Python 3.10–3.13).
 - Synthetic scorer smoke test: **2/2 passed** (`results_synthetic_smoke.json`); this validates basic parser/scorer operation only and is not a performance estimate for Oli.
 - Live deal/terms mutations performed for this eval: **none**.
 
 The scorer defines tool-selection accuracy as correct expected call sequence and required arguments divided by cases with an explicit associated call trace. The case pass rate is passes divided by evaluable cases. Cases without trace evidence are `INCONCLUSIVE` instead of pass/fail.
+
+The transcript parser supports structured JSON, OpenAI-style function-call records, explicit plain-text call markers, and newline-delimited JSONL. Regression coverage includes multi-line JSONL, scenario-dataset integrity, and conditional safety exceptions that require explicit structured evidence. A GitHub Actions workflow runs the unit suite on pushes and pull requests.
 
 ## What is actually observable
 
