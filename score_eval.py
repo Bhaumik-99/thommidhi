@@ -9,7 +9,7 @@ Accepted transcript formats:
 If actual tool calls cannot be established, the case is inconclusive for call accuracy. Natural-language refusals are not proof of backend enforcement.
 """
 from __future__ import annotations
-import argparse, json, re, sys
+import argparse, json, re
 from pathlib import Path
 from typing import Any
 
@@ -78,8 +78,26 @@ def parse_transcript(path: Path) -> tuple[dict[str, list[dict]], dict[str, dict]
     state: dict[str, dict] = {}
     texts: dict[str, str] = {}
     notes: list[str] = []
+    # Prefer a single JSON document. If parsing fails, accept newline-delimited
+    # JSON records (JSONL), where each non-empty line is a separate JSON value.
+    obj: Any = None
     try:
         obj = json.loads(raw)
+    except json.JSONDecodeError:
+        records = []
+        is_jsonl = True
+        for line in raw.splitlines():
+            if not line.strip():
+                continue
+            try:
+                records.append(json.loads(line))
+            except json.JSONDecodeError:
+                is_jsonl = False
+                break
+        if is_jsonl and len(records) > 1:
+            obj = records
+
+    if obj is not None:
         saw = False
         for cid, name, args in _walk_calls(obj):
             if cid:
@@ -108,9 +126,7 @@ def parse_transcript(path: Path) -> tuple[dict[str, list[dict]], dict[str, dict]
                     for v in x: collect(v)
             collect(obj)
             return calls, state, texts, notes
-        notes.append("Valid JSON supplied but no parseable structured tool calls found.")
-    except json.JSONDecodeError:
-        pass
+        notes.append("Valid JSON/JSONL supplied but no parseable structured tool calls found.")
     # Plain-text explicit parser: only TOOL_CALL records count, never mentions in prose.
     current_case = None
     for line_no, line in enumerate(raw.splitlines(), 1):
